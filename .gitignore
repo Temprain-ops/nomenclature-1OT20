@@ -2,5 +2,5 @@ build/
 dist/
 .idea/
 __pycache__/
-count_nomenclature/__pychache__/
-ui/__pychache__/
+count_nomenclature/__pycache__/
+ui/__pycache__/
