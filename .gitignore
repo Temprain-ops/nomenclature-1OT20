@@ -1,3 +1,6 @@
 build/
 dist/
 .idea/
+__pycache__/
+count_nomenclature/__pychache__/
+ui/__pychache__/
