@@ -59,7 +59,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QRadioButton" name="radioButton_2">
+         <widget class="QRadioButton" name="SelfRadioButton">
           <property name="text">
            <string>Самоконтроль</string>
           </property>
@@ -69,7 +69,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QRadioButton" name="radioButton">
+         <widget class="QRadioButton" name="ControlRadioButton">
           <property name="text">
            <string>Контроль Знаний</string>
           </property>
@@ -93,58 +93,51 @@
       <item>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="1" column="1">
-         <widget class="QCheckBox" name="checkBox_4">
+         <widget class="QCheckBox" name="HundredcheckBox">
           <property name="text">
            <string>1:100000</string>
           </property>
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QCheckBox" name="checkBox_2">
+         <widget class="QCheckBox" name="QuarterCheckBox">
           <property name="text">
            <string>1:25000</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QCheckBox" name="checkBox_6">
-          <property name="text">
-           <string>1:300000</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
-         <widget class="QCheckBox" name="checkBox">
+         <widget class="QCheckBox" name="TenCheckBox">
           <property name="text">
            <string>1:10000</string>
           </property>
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QCheckBox" name="checkBox_5">
+         <widget class="QCheckBox" name="TwoHundredCheckBox">
           <property name="text">
            <string>1:200000</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
-         <widget class="QCheckBox" name="checkBox_8">
+        <item row="1" column="0">
+         <widget class="QCheckBox" name="HalfHundredCheckBox">
           <property name="text">
-           <string>1:1000000</string>
+           <string>1:50000</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
-         <widget class="QCheckBox" name="checkBox_7">
+        <item row="2" column="1">
+         <widget class="QCheckBox" name="HalfMillionCheckBox">
           <property name="text">
            <string>1:500000</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QCheckBox" name="checkBox_3">
+        <item row="3" column="0">
+         <widget class="QCheckBox" name="MillionCheckBox">
           <property name="text">
-           <string>1:50000</string>
+           <string>1:1000000</string>
           </property>
          </widget>
         </item>
@@ -179,7 +172,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="Back">
+         <widget class="QPushButton" name="BackButton">
           <property name="text">
            <string>Назад</string>
           </property>
@@ -199,7 +192,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="Begin">
+         <widget class="QPushButton" name="BeginButton">
           <property name="text">
            <string>Начать тест</string>
           </property>
