@@ -102,7 +102,7 @@ def get_hundred_list(hundred):
         nomenclatures_list.append(row + '-' + str(million_number) + '-' + str(hundred_number + 1))
         nomenclatures_list.append(million_neighbours[6] + '-' + str(12))
         nomenclatures_list.append(million_neighbours[7] + '-' + str(1))
-        nomenclatures_list.append(million_neighbours[7] + '-' + str(12))
+        nomenclatures_list.append(million_neighbours[7] + '-' + str(2))
     elif hundred_number == 144:
         million_neighbours = million.get_million_list([row, million_number])
         nomenclatures_list.append(row + '-' + str(million_number) + '-' + str(hundred_number - 13))
@@ -110,7 +110,7 @@ def get_hundred_list(hundred):
         nomenclatures_list.append(million_neighbours[5] + '-' + str(121))
         nomenclatures_list.append(row + '-' + str(million_number) + '-' + str(hundred_number - 1))
         nomenclatures_list.append(row + '-' + str(million_number) + '-' + str(hundred_number))
-        nomenclatures_list.append(million_neighbours[6] + '-' + str(133))
+        nomenclatures_list.append(million_neighbours[5] + '-' + str(133))
         nomenclatures_list.append(million_neighbours[7] + '-' + str(11))
         nomenclatures_list.append(million_neighbours[7] + '-' + str(12))
         nomenclatures_list.append(million_neighbours[8] + '-' + str(1))

@@ -87,11 +87,3 @@ def get_ten():
     shuffle(ten_list)
     return get_quarter() + delimiter + str(ten_list[0])
 
-
-print(get_million())
-print(get_half_million())
-print(get_two_hundred())
-print(get_hundred())
-print(get_half_hundred())
-print(get_quarter())
-print(get_ten())

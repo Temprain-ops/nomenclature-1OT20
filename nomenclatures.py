@@ -4,6 +4,7 @@ from count_nomenclature import half_hundred, half_million, hundred, million, reg
 
 
 def get_nomenclatures(nomenclature):
+    nomenclature = nomenclature.strip()
     if re.match(regexp_config.million_regexp, nomenclature):
         nomenclatures_list = million.get_million_list(nomenclature.split(regexp_config.split_symbol))
     elif re.match(regexp_config.half_million_regexp, nomenclature):
@@ -21,11 +22,3 @@ def get_nomenclatures(nomenclature):
     else:
         raise Exception('doesn\'t match regexp')
     return nomenclatures_list
-
-
-if __name__ == '__main__':
-    nomenclatures = get_nomenclatures('B-13-XVIII')
-    for i in range(1, 10):
-        print(nomenclatures[i - 1], end=' ')
-        if i % 3 == 0:
-            print(' ')
