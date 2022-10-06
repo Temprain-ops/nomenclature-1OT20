@@ -28,6 +28,7 @@ class TheoryWindow(QMainWindow):
         super(TheoryWindow, self).__init__()
         self.ui = ui.ui_LearnConfiguration.Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle("Номенклатура")
         self.initialize_links(MainWindow)
         self.set_signals()
         self.image_list = [self.load_images(globus), self.load_images(million), self.load_images(two_hundred), self.load_images(hundred), self.load_images(half_hundred), self.load_images(schema)]
@@ -123,6 +124,7 @@ class PracticeWindow(QMainWindow):
         super(PracticeWindow, self).__init__()
         self.ui = ui.ui_PracticeWindow.Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle("Номенклатура")
         self.initialize_links(MainWindow)
         self.initialize_table()
         self.set_signals()
@@ -160,6 +162,8 @@ class PracticeWindow(QMainWindow):
         for i in range(9):
             self.ui.MapTable.setItem(i//3, i%3, QTableWidgetItem(self.answers[i]))
             self.ui.MapTable.item(i//3, i%3).setTextAlignment(QtCore.Qt.AlignCenter)
+            if i//3 != 1 or i%3 != 1:
+                self.ui.MapTable.item(i//3, i%3).setFlags(Qt.ItemIsEditable)
 
     def backButtonClicked(self):
         self.mw.toggle_practice_window()
@@ -171,6 +175,7 @@ class TestProgressWindow(QMainWindow):
         super(TestProgressWindow, self).__init__()
         self.ui = ui.ui_TestProgress.Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle("Номенклатура")
         self.initialize_links(MainWindow, TestConfigurationWindow)
         self.set_signals()
 
@@ -347,6 +352,7 @@ class TestConfigurationWindow(QMainWindow):
         super(TestConfigurationWindow, self).__init__()
         self.ui = ui.ui_TestConfiguration.Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle("Номенклатура")
         self.initialize_links(MainWindow)
         self.set_signals()
 
@@ -410,6 +416,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = ui.ui_mainwindow.Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle("Номенклатура")
         self.initialize_links()
         self.set_signals()
 
