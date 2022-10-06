@@ -1,16 +1,169 @@
 # This Python file uses the following encoding: utf-8
 import os
 import sys
+import base64
+from io import BytesIO
+import base64
+from io import BytesIO
 from PySide2 import QtGui
-from PySide2.QtWidgets import QApplication, QWidget, QMainWindow, QAbstractItemDelegate, QTableWidgetItem
-from PySide2.QtCore import QFile, QIODevice
+from PIL import Image, ImageQt
+from PySide2.QtWidgets import QLabel, QVBoxLayout, QDialogButtonBox, QDialog, QApplication, QWidget, QMainWindow, QAbstractItemDelegate, QTableWidgetItem, QMessageBox, QAbstractItemView
+from PySide2.QtCore import QFile, QIODevice, Qt
 from PySide2.QtUiTools import QUiLoader
 import ui.ui_mainwindow
 import ui.ui_TestConfiguration
 import ui.ui_TestProgress
+import ui.ui_TestDialog
+import ui.ui_LearnConfiguration
+import ui.ui_PracticeWindow
 import gerenerate_nomenclature.generator as gen
+import numpy as np
 from nomenclatures import get_nomenclatures
-from PyQt5 import QtCore, QtWidgets
+from PySide2.QtGui import QPixmap, QImage
+from PyQt5 import QtCore
+from photo.globus import globus, million, two_hundred, hundred, half_hundred, schema
+
+class TheoryWindow(QMainWindow):
+    def __init__(self, MainWindow):
+        super(TheoryWindow, self).__init__()
+        self.ui = ui.ui_LearnConfiguration.Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.initialize_links(MainWindow)
+        self.set_signals()
+        self.image_list = [self.load_images(globus), self.load_images(million), self.load_images(two_hundred), self.load_images(hundred), self.load_images(half_hundred), self.load_images(schema)]
+        self.cur_image = 0
+        self.show_current_image()
+
+    def load_images(self, im):
+        byte_data = base64.b64decode(im)
+        image_data = BytesIO(byte_data)
+        image = Image.open(image_data)
+        qImage = ImageQt.ImageQt(image)
+
+        return qImage
+
+    def initialize_links(self, MainWindow):
+        self.mw = MainWindow
+
+    def set_signals(self):
+        self.ui.backButton.clicked.connect(self.prev)
+        self.ui.nextButton.clicked.connect(self.next)
+
+    def toggle_main_window(self):
+        self.mw.toggle_theory_window()
+
+    def update_text_and_visibility(self):
+        if self.cur_image == 0:
+            self.ui.backButton.setText("Выйти из презентации")
+            self.ui.nextButton.setText("Следующий слайд")
+        elif self.cur_image == len(self.image_list)-1:
+            self.ui.backButton.setText("Предыдущий слайд")
+            self.ui.nextButton.setText("Выйти из презентации")
+        else:
+            self.ui.backButton.setText("Предыдущий слайд")
+            self.ui.nextButton.setText("Следующий слайд")
+
+    def show_current_image(self):
+        pixmap = QPixmap(self.image_list[self.cur_image])
+        self.ui.label.setPixmap(pixmap)
+        self.update_text_and_visibility()
+
+    def next(self):
+        if self.cur_image != len(self.image_list)-1:
+            self.cur_image += 1
+            self.show_current_image()
+        else:
+            self.cur_image = 0
+            self.show_current_image()
+            self.toggle_main_window()
+
+    def prev(self):
+        if self.cur_image != 0:
+            self.cur_image -= 1
+            self.show_current_image()
+        else:
+            self.toggle_main_window()
+
+
+class TestDialog(QDialog):
+    def __init__(self, shown_text, TestConfigurationWindow, TestProgressWindow):
+        super(TestDialog, self).__init__()
+        self.ui = ui.ui_TestDialog.Ui_Dialog()
+        self.ui.setupUi(self)
+        self.initialize_links(TestConfigurationWindow, TestProgressWindow)
+        self.initialize_ui(shown_text)
+        self.set_signals()
+
+    def initialize_links(self, TestConfigurationWindow, TestProgressWindow):
+        self.tcw = TestConfigurationWindow
+        self.tpw = TestProgressWindow
+
+    def initialize_ui(self, shown_text):
+        self.setWindowTitle("Результаты:")
+        self.ui.label.setText(shown_text)
+        self.ui.label.setAlignment(Qt.AlignLeft)
+        self.setWindowFlags(self.windowFlags() & ~Qt.WindowCloseButtonHint)
+
+    def toggle_TestConfigurationWindow(self):
+        self.tcw.toggle_progress_window()
+        self.close()
+
+    def toggle_TestProgressWindow(self):
+        self.tcw.toggle_progress_window()
+        self.tcw.toggle_progress_window()
+        self.close()
+
+    def set_signals(self):
+        self.ui.AgainButton.clicked.connect(self.toggle_TestProgressWindow)
+        self.ui.BackButton.clicked.connect(self.toggle_TestConfigurationWindow)
+
+
+class PracticeWindow(QMainWindow):
+    def __init__(self, MainWindow):
+        super(PracticeWindow, self).__init__()
+        self.ui = ui.ui_PracticeWindow.Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.initialize_links(MainWindow)
+        self.initialize_table()
+        self.set_signals()
+
+    def initialize_links(self, MainWindow):
+        self.mw = MainWindow
+
+    def initialize_table(self):
+        for i in range(3):
+            for j in range(3):
+                self.ui.MapTable.setItem(i, j, QTableWidgetItem(""))
+                self.ui.MapTable.item(i, j).setTextAlignment(QtCore.Qt.AlignCenter)
+                if i != 1 or j != 1:
+                    self.ui.MapTable.item(i, j).setFlags(Qt.ItemIsEditable)
+
+    def clear_table(self):
+        for i in range(3):
+            for j in range(3):
+                self.ui.MapTable.setItem(i, j, QTableWidgetItem(""))
+
+    def set_signals(self):
+        self.ui.backButton.clicked.connect(self.backButtonClicked)
+        self.ui.clearButton.clicked.connect(self.clear_table)
+        self.ui.generateButton.clicked.connect(self.generate_and_show)
+
+    def generate_and_show(self):
+        try:
+            self.answers = get_nomenclatures(self.ui.MapTable.item(1, 1).text())
+        except:
+            dlg = QMessageBox(self)
+            dlg.setWindowTitle("Ошибка!")
+            dlg.setText("Неверный формат!")
+            button = dlg.exec()
+            return
+        for i in range(9):
+            self.ui.MapTable.setItem(i//3, i%3, QTableWidgetItem(self.answers[i]))
+            self.ui.MapTable.item(i//3, i%3).setTextAlignment(QtCore.Qt.AlignCenter)
+
+    def backButtonClicked(self):
+        self.mw.toggle_practice_window()
+        self.clear_table()
 
 
 class TestProgressWindow(QMainWindow):
@@ -19,19 +172,16 @@ class TestProgressWindow(QMainWindow):
         self.ui = ui.ui_TestProgress.Ui_MainWindow()
         self.ui.setupUi(self)
         self.initialize_links(MainWindow, TestConfigurationWindow)
-        self.initialize_table()
         self.set_signals()
 
     def initialize_links(self, MainWindow, TestConfigurationWindow):
         self.mw = MainWindow
         self.tcw = TestConfigurationWindow
-        print("TPW init")
 
     def initialize_table(self):
         for i in range(3):
             for j in range(3):
                 self.ui.MapTable.item(i, j).setTextAlignment(QtCore.Qt.AlignCenter)
-#        self.ui.MapTable.item(0, 0).setBackground(QtGui.QBrush(QtGui.QColor(128, 0, 0)))
 
     def clear_table(self):
         for i in range(3):
@@ -41,6 +191,8 @@ class TestProgressWindow(QMainWindow):
     def set_signals(self):
         self.ui.BackButton.clicked.connect(self.backButtonClicked)
         self.ui.NextButton.clicked.connect(self.nextButtonClicked)
+        self.ui.CheckButton.pressed.connect(self.checkButtonPressed)
+        self.ui.CheckButton.released.connect(self.checkButtonReleased)
 
     def toggle_test_configuration_window(self):
         self.tcw.toggle_progress_window()
@@ -56,7 +208,13 @@ class TestProgressWindow(QMainWindow):
         self.half_million = half_million
         self.million = million
         self.testcases = []
+        self.answers = [[""]*9]*self.number_of_testcases
         self.current_testcase = 0
+        self.initialize_table()
+        if control:
+            self.ui.CheckButton.hide()
+        else:
+            self.ui.CheckButton.show()
 
     def generate_testcases(self):
         while len(self.testcases) < self.number_of_testcases:
@@ -81,10 +239,22 @@ class TestProgressWindow(QMainWindow):
             if self.million:
                 testcase = gen.get_million()
                 self.testcases.append(get_nomenclatures(testcase))
+        print(self.testcases)
+
+    def save_answer(self):
+        answer = []
+        for i in range(3):
+            for j in range(3):
+                answer.append(self.ui.MapTable.item(i, j).text())
+        self.answers[self.current_testcase] = answer
+        print(self.answers)
 
     def show_current_testcase(self):
         self.clear_table()
+        for i in range(9):
+            self.ui.MapTable.setItem(i//3, i%3, QTableWidgetItem(self.answers[self.current_testcase][i]))
         self.ui.MapTable.setItem(1, 1, QTableWidgetItem(self.testcases[self.current_testcase][4]))
+        self.ui.MapTable.item(1, 1).setFlags(Qt.ItemIsEditable)
         self.initialize_table()
 
     def proceed_to_next_testcase(self):
@@ -106,16 +276,70 @@ class TestProgressWindow(QMainWindow):
             self.ui.BackButton.setText("Предыдущий")
 
     def nextButtonClicked(self):
+        self.save_answer()
         if self.current_testcase < self.number_of_testcases-1:
             self.proceed_to_next_testcase()
+        else:
+            dlg = TestDialog(self.compileResult(), self.tcw, self)
+            dlg.exec()
         self.update_text()
 
     def backButtonClicked(self):
+        self.save_answer()
         if self.current_testcase > 0:
             self.proceed_to_prev_testcase()
         else:
             self.toggle_test_configuration_window()
         self.update_text()
+
+    def checkButtonPressed(self):
+        self.save_answer()
+        matrix = [ans == case for ans, case in zip(self.answers[self.current_testcase], self.testcases[self.current_testcase])]
+        for num in range(len(matrix)):
+            if not matrix[num]:
+                self.ui.MapTable.item(num//3, (num)%3).setBackground(QtGui.QBrush(QtGui.QColor(128, 0, 0)))
+            else:
+                self.ui.MapTable.item(num//3, (num)%3).setBackground(QtGui.QBrush(QtGui.QColor(0, 128, 0)))
+
+    def checkButtonReleased(self):
+        for i in range(3):
+            for j in range(3):
+                self.ui.MapTable.item(i, j).setBackground(QtGui.QBrush(QtGui.QColor(255, 255, 255)))
+
+    def compileResult(self):
+        results = np.sum([([ans == case for ans, case in zip(self.answers[i], self.testcases[i])]) for i in range(self.number_of_testcases)]) - self.number_of_testcases
+        print(results)
+        total_grade = round(10*results / (self.number_of_testcases*8), 1)
+        summary = "Ваш результат: " + str(total_grade) + "\n" + "Номенклатуры в тесте: \n"
+        if self.ten:
+            summary += "1:10000 - Да\n"
+        else:
+            summary += "1:10000 - Нет\n"
+        if self.quarter:
+            summary += "1:25000 - Да\n"
+        else:
+            summary += "1:25000 - Нет\n"
+        if self.half_hundred:
+            summary += "1:50000 - Да\n"
+        else:
+            summary += "1:50000 - Нет\n"
+        if self.hundred:
+            summary += "1:100000 - Да\n"
+        else:
+            summary += "1:100000 - Нет\n"
+        if self.two_hundred:
+            summary += "1:200000 - Да\n"
+        else:
+            summary += "1:200000 - Нет\n"
+        if self.half_million:
+            summary += "1:500000 - Да\n"
+        else:
+            summary += "1:500000 - Нет\n"
+        if self.million:
+            summary += "1:1000000 - Да\n"
+        else:
+            summary += "1:1000000 - Нет\n"
+        return summary
 
 
 class TestConfigurationWindow(QMainWindow):
@@ -129,11 +353,30 @@ class TestConfigurationWindow(QMainWindow):
     def initialize_links(self, MainWindow):
         self.mw = MainWindow
         self.tpw = TestProgressWindow(self, MainWindow)
-        print("TCW init")
 
     def set_signals(self):
         self.ui.BackButton.clicked.connect(self.toggle_main_window)
         self.ui.BeginButton.clicked.connect(self.toggle_progress_window)
+        self.ui.ControlRadioButton.clicked.connect(self.toggle_checkBoxes)
+        self.ui.SelfRadioButton.clicked.connect(self.toggle_checkBoxes)
+
+    def toggle_checkBoxes(self):
+        if self.ui.ControlRadioButton.isChecked():
+            self.ui.TenCheckBox.setCheckable(False)
+            self.ui.QuarterCheckBox.setCheckable(False)
+            self.ui.HalfHundredCheckBox.setCheckable(False)
+            self.ui.HundredcheckBox.setCheckable(False)
+            self.ui.TwoHundredCheckBox.setCheckable(False)
+            self.ui.HalfMillionCheckBox.setCheckable(False)
+            self.ui.MillionCheckBox.setCheckable(False)
+        else:
+            self.ui.TenCheckBox.setCheckable(True)
+            self.ui.QuarterCheckBox.setCheckable(True)
+            self.ui.HalfHundredCheckBox.setCheckable(True)
+            self.ui.HundredcheckBox.setCheckable(True)
+            self.ui.TwoHundredCheckBox.setCheckable(True)
+            self.ui.HalfMillionCheckBox.setCheckable(True)
+            self.ui.MillionCheckBox.setCheckable(True)
 
     def toggle_main_window(self):
         self.mw.toggle_test_config_window()
@@ -143,11 +386,21 @@ class TestConfigurationWindow(QMainWindow):
             self.tpw.hide()
             self.show()
         else:
-            self.tpw.setup_test_config(7, self.ui.ControlRadioButton.isChecked(), self.ui.TenCheckBox.isChecked(), self.ui.QuarterCheckBox.isChecked(), self.ui.HalfHundredCheckBox.isChecked(),
+            if self.ui.ControlRadioButton.isChecked():
+                self.tpw.setup_test_config(7, self.ui.ControlRadioButton.isChecked(), True, True, True, True, True, True, True)
+            elif self.ui.TenCheckBox.isChecked() or self.ui.QuarterCheckBox.isChecked() or self.ui.HalfHundredCheckBox.isChecked() or self.ui.HundredcheckBox.isChecked() or self.ui.TwoHundredCheckBox.isChecked() or self.ui.HalfMillionCheckBox.isChecked() or self.ui.MillionCheckBox.isChecked():
+                self.tpw.setup_test_config(7, self.ui.ControlRadioButton.isChecked(), self.ui.TenCheckBox.isChecked(), self.ui.QuarterCheckBox.isChecked(), self.ui.HalfHundredCheckBox.isChecked(),
                                         self.ui.HundredcheckBox.isChecked(), self.ui.TwoHundredCheckBox.isChecked(), self.ui.HalfMillionCheckBox.isChecked(),
                                         self.ui.MillionCheckBox.isChecked())
+            else:
+                dlg = QMessageBox(self)
+                dlg.setWindowTitle("Ошибка!")
+                dlg.setText("Выберите хотя бы один формат!")
+                button = dlg.exec()
+                return
             self.tpw.generate_testcases()
             self.tpw.show_current_testcase()
+            self.tpw.update_text()
             self.tpw.show()
             self.hide()
 
@@ -162,9 +415,13 @@ class MainWindow(QMainWindow):
 
     def set_signals(self):
         self.ui.TestButton.clicked.connect(self.toggle_test_config_window)
+        self.ui.theoryButton.clicked.connect(self.toggle_theory_window)
+        self.ui.practiceButton.clicked.connect(self.toggle_practice_window)
 
     def initialize_links(self):
         self.tcw = TestConfigurationWindow(self)
+        self.tw = TheoryWindow(self)
+        self.pw = PracticeWindow(self)
 
     def toggle_test_config_window(self):
         if self.tcw.isVisible():
@@ -174,9 +431,26 @@ class MainWindow(QMainWindow):
             self.tcw.show()
             self.hide()
 
+    def toggle_theory_window(self):
+        if self.tw.isVisible():
+            self.tw.hide()
+            self.show()
+        else:
+            self.tw.show()
+            self.hide()
+
+    def toggle_practice_window(self):
+        if self.pw.isVisible():
+            self.pw.hide()
+            self.show()
+        else:
+            self.pw.show()
+            self.hide()
+
 
 if __name__ == "__main__":
     app = QApplication([])
+    app.setAttribute(Qt.AA_DisableWindowContextHelpButton)
     window = MainWindow()
     window.show()
     sys.exit(app.exec_())

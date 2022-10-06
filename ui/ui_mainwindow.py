@@ -30,10 +30,19 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.LearningButton = QPushButton(self.centralwidget)
-        self.LearningButton.setObjectName(u"LearningButton")
+        self.theoryButton = QPushButton(self.centralwidget)
+        self.theoryButton.setObjectName(u"theoryButton")
 
-        self.horizontalLayout.addWidget(self.LearningButton)
+        self.horizontalLayout.addWidget(self.theoryButton)
+
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_4)
+
+        self.practiceButton = QPushButton(self.centralwidget)
+        self.practiceButton.setObjectName(u"practiceButton")
+
+        self.horizontalLayout.addWidget(self.practiceButton)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -63,15 +72,10 @@ class Ui_MainWindow(object):
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
         self.menubar.setGeometry(QRect(0, 0, 758, 21))
-        self.menuFile = QMenu(self.menubar)
-        self.menuFile.setObjectName(u"menuFile")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
-        self.menubar.addAction(self.menuFile.menuAction())
-        self.menuFile.addAction(self.action)
 
         self.retranslateUi(MainWindow)
 
@@ -81,8 +85,8 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.action.setText(QCoreApplication.translate("MainWindow", u"&\u0412\u044b\u0445\u043e\u0434", None))
-        self.LearningButton.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0431\u0443\u0447\u0435\u043d\u0438\u0435", None))
+        self.theoryButton.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043e\u0440\u0438\u044f", None))
+        self.practiceButton.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u0430\u043a\u0442\u0438\u043a\u0430", None))
         self.TestButton.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435", None))
-        self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"\u0424\u0430\u0439\u043b", None))
     # retranslateUi
 

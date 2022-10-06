@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 7.0.0, 2022-04-27T13:29:57. -->
+<!-- Written by QtCreator 7.0.0, 2022-09-29T22:40:41. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -229,7 +229,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">C:/Projects/nomenclature-1OT20/widget.py</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Projects/nomenclature-1OT20/widget.py</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Projects/nomenclature-1OT20/widget.py</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{096d597b-e08a-4af2-9e9a-4051757e8c70}</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{723d6d59-e9d4-4c0e-840a-dafb1aae9564}</value>
     <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Projects\nomenclature-1OT20\widget.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
@@ -363,6 +363,168 @@
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/nomenclature-1OT20</value>
    </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.21">
+    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">C:/Projects/nomenclature-1OT20/ui/ui_TestDialog.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Projects/nomenclature-1OT20/ui/ui_TestDialog.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Projects/nomenclature-1OT20/ui/ui_TestDialog.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{285ccd51-fa69-4eda-bd39-5ff3850b0177}</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Projects\nomenclature-1OT20\ui\ui_TestDialog.py</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/nomenclature-1OT20/ui</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.22">
+    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">C:/Projects/nomenclature-1OT20/ui/ui_LearnConfiguration.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Projects/nomenclature-1OT20/ui/ui_LearnConfiguration.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Projects/nomenclature-1OT20/ui/ui_LearnConfiguration.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{4e508cb7-e78a-4c3d-b8fd-f952663bee45}</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Projects\nomenclature-1OT20\ui\ui_LearnConfiguration.py</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/nomenclature-1OT20/ui</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.23">
+    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">C:/Projects/nomenclature-1OT20/photo/1.jpg</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Projects/nomenclature-1OT20/photo/1.jpg</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Projects/nomenclature-1OT20/photo/1.jpg</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{6ff3f09d-5c7b-4371-8a47-d3c9b839de32}</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Projects\nomenclature-1OT20\photo\1.jpg</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/nomenclature-1OT20/photo</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.24">
+    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">C:/Projects/nomenclature-1OT20/photo/2.jpg</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Projects/nomenclature-1OT20/photo/2.jpg</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Projects/nomenclature-1OT20/photo/2.jpg</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{0af18b3e-ab28-40ef-8160-93bc1734f8d0}</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Projects\nomenclature-1OT20\photo\2.jpg</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/nomenclature-1OT20/photo</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.25">
+    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">C:/Projects/nomenclature-1OT20/ui/ui_PracticeWindow.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Projects/nomenclature-1OT20/ui/ui_PracticeWindow.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Projects/nomenclature-1OT20/ui/ui_PracticeWindow.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{169aef3c-831c-45e8-bf5f-cab5d4e556a8}</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Projects\nomenclature-1OT20\ui\ui_PracticeWindow.py</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/nomenclature-1OT20/ui</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.26">
+    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">C:/Projects/nomenclature-1OT20/photo/5.jpg</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Projects/nomenclature-1OT20/photo/5.jpg</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Projects/nomenclature-1OT20/photo/5.jpg</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{644f30de-d779-46ef-a767-962fce8fc1aa}</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Projects\nomenclature-1OT20\photo\5.jpg</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/nomenclature-1OT20/photo</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.27">
+    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">C:/Projects/nomenclature-1OT20/photo/4.jpg</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Projects/nomenclature-1OT20/photo/4.jpg</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Projects/nomenclature-1OT20/photo/4.jpg</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{04aa65fc-726e-47c5-916f-8d9644b6263d}</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Projects\nomenclature-1OT20\photo\4.jpg</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/nomenclature-1OT20/photo</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.28">
+    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">C:/Projects/nomenclature-1OT20/photo/6.jpg</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Projects/nomenclature-1OT20/photo/6.jpg</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Projects/nomenclature-1OT20/photo/6.jpg</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{31c867bc-ac9c-4fa8-bd61-8a807da986fd}</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Projects\nomenclature-1OT20\photo\6.jpg</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/nomenclature-1OT20/photo</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.29">
+    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">C:/Projects/nomenclature-1OT20/photo/3.jpg</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Projects/nomenclature-1OT20/photo/3.jpg</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Projects/nomenclature-1OT20/photo/3.jpg</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{2670f5cc-1b3c-473e-ac05-4c75c91fd5fe}</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Projects\nomenclature-1OT20\photo\3.jpg</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/nomenclature-1OT20/photo</value>
+   </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.3">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
     <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
@@ -380,6 +542,24 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/nomenclature-1OT20/count_nomenclature</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.30">
+    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">C:/Projects/nomenclature-1OT20/photo/globus.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Projects/nomenclature-1OT20/photo/globus.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Projects/nomenclature-1OT20/photo/globus.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{c6de1b81-8961-4a82-b649-12f9479fc51d}</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Projects\nomenclature-1OT20\photo\globus.py</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/nomenclature-1OT20/photo</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.4">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -489,7 +669,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/nomenclature-1OT20/count_nomenclature</value>
    </valuemap>
-   <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">21</value>
+   <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">31</value>
   </valuemap>
  </data>
  <data>

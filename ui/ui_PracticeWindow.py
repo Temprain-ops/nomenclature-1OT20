@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'TestProgress.ui'
+## Form generated from reading UI file 'PracticeWindow.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -18,13 +18,6 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(800, 600)
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
-        MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMinimumSize(QSize(800, 600))
-        MainWindow.setMaximumSize(QSize(800, 600))
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
@@ -36,25 +29,10 @@ class Ui_MainWindow(object):
             self.MapTable.setColumnCount(3)
         if (self.MapTable.rowCount() < 3):
             self.MapTable.setRowCount(3)
-        __qtablewidgetitem = QTableWidgetItem()
-        self.MapTable.setItem(0, 0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        self.MapTable.setItem(0, 1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.MapTable.setItem(0, 2, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.MapTable.setItem(1, 0, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.MapTable.setItem(1, 1, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        self.MapTable.setItem(1, 2, __qtablewidgetitem5)
-        __qtablewidgetitem6 = QTableWidgetItem()
-        self.MapTable.setItem(2, 0, __qtablewidgetitem6)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.MapTable.setItem(2, 1, __qtablewidgetitem7)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.MapTable.setItem(2, 2, __qtablewidgetitem8)
         self.MapTable.setObjectName(u"MapTable")
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.MapTable.sizePolicy().hasHeightForWidth())
         self.MapTable.setSizePolicy(sizePolicy)
         self.MapTable.setMinimumSize(QSize(780, 505))
@@ -63,9 +41,7 @@ class Ui_MainWindow(object):
         font.setPointSize(16)
         font.setBold(True)
         self.MapTable.setFont(font)
-        self.MapTable.setLayoutDirection(Qt.LeftToRight)
         self.MapTable.setSelectionMode(QAbstractItemView.NoSelection)
-        self.MapTable.setTextElideMode(Qt.ElideLeft)
         self.MapTable.setRowCount(3)
         self.MapTable.setColumnCount(3)
         self.MapTable.horizontalHeader().setVisible(False)
@@ -77,25 +53,29 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.MapTable)
 
-        self.horizontalLayout_3 = QHBoxLayout()
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.BackButton = QPushButton(self.centralwidget)
-        self.BackButton.setObjectName(u"BackButton")
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.backButton = QPushButton(self.centralwidget)
+        self.backButton.setObjectName(u"backButton")
 
-        self.horizontalLayout_3.addWidget(self.BackButton)
+        self.horizontalLayout.addWidget(self.backButton)
 
-        self.CheckButton = QPushButton(self.centralwidget)
-        self.CheckButton.setObjectName(u"CheckButton")
+        self.clearButton = QPushButton(self.centralwidget)
+        self.clearButton.setObjectName(u"clearButton")
+        font1 = QFont()
+        font1.setPointSize(9)
+        font1.setBold(False)
+        self.clearButton.setFont(font1)
 
-        self.horizontalLayout_3.addWidget(self.CheckButton)
+        self.horizontalLayout.addWidget(self.clearButton)
 
-        self.NextButton = QPushButton(self.centralwidget)
-        self.NextButton.setObjectName(u"NextButton")
+        self.generateButton = QPushButton(self.centralwidget)
+        self.generateButton.setObjectName(u"generateButton")
 
-        self.horizontalLayout_3.addWidget(self.NextButton)
+        self.horizontalLayout.addWidget(self.generateButton)
 
 
-        self.verticalLayout.addLayout(self.horizontalLayout_3)
+        self.verticalLayout.addLayout(self.horizontalLayout)
 
 
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
@@ -116,13 +96,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-
-        __sortingEnabled = self.MapTable.isSortingEnabled()
-        self.MapTable.setSortingEnabled(False)
-        self.MapTable.setSortingEnabled(__sortingEnabled)
-
-        self.BackButton.setText(QCoreApplication.translate("MainWindow", u"\u041a \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430\u043c", None))
-        self.CheckButton.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430", None))
-        self.NextButton.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439", None))
+        self.backButton.setText(QCoreApplication.translate("MainWindow", u"\u0412 \u043c\u0435\u043d\u044e", None))
+        self.clearButton.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0447\u0438\u0441\u0442\u0438\u0442\u044c", None))
+        self.generateButton.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0433\u0435\u043d\u0435\u0440\u0438\u0440\u043e\u0432\u0430\u0442\u044c", None))
     # retranslateUi
 

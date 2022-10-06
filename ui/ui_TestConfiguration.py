@@ -150,18 +150,10 @@ class Ui_MainWindow(object):
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
         self.menubar.setGeometry(QRect(0, 0, 823, 21))
-        self.menu = QMenu(self.menubar)
-        self.menu.setObjectName(u"menu")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
-        self.menubar.addAction(self.menu.menuAction())
-        self.menu.addAction(self.action)
-        self.menu.addAction(self.action_2)
-        self.menu.addSeparator()
-        self.menu.addAction(self.action_4)
 
         self.retranslateUi(MainWindow)
 
@@ -185,6 +177,5 @@ class Ui_MainWindow(object):
         self.MillionCheckBox.setText(QCoreApplication.translate("MainWindow", u"1:1000000", None))
         self.BackButton.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0430\u0434", None))
         self.BeginButton.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0447\u0430\u0442\u044c \u0442\u0435\u0441\u0442", None))
-        self.menu.setTitle(QCoreApplication.translate("MainWindow", u"\u0424\u0430\u0439\u043b", None))
     # retranslateUi
 
