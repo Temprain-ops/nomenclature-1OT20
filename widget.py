@@ -7,8 +7,10 @@ import base64
 from io import BytesIO
 from PySide2 import QtGui
 from PIL import Image, ImageQt
-from PySide2.QtWidgets import QLabel, QVBoxLayout, QDialogButtonBox, QDialog, QApplication, QWidget, QMainWindow, QAbstractItemDelegate, QTableWidgetItem, QMessageBox, QAbstractItemView
-from PySide2.QtCore import QFile, QIODevice, Qt
+from PySide2.QtWidgets import QLabel, QVBoxLayout, QDialogButtonBox, QDialog, QApplication, QWidget, QMainWindow, QAbstractItemDelegate, QTableWidgetItem, QMessageBox, QAbstractItemView, QFileDialog, QHBoxLayout, QPushButton, QSizePolicy, QSlider, QStyle
+from PySide2.QtCore import QFile, QIODevice, Qt, QDir, QUrl
+from PySide2.QtMultimedia import QMediaContent, QMediaPlayer
+from PySide2.QtMultimediaWidgets import QVideoWidget
 from PySide2.QtUiTools import QUiLoader
 import ui.ui_mainwindow
 import ui.ui_TestConfiguration
@@ -18,40 +20,191 @@ import ui.ui_LearnConfiguration
 import ui.ui_PracticeWindow
 import gerenerate_nomenclature.generator as gen
 import numpy as np
+import PySide2
 from nomenclatures import get_nomenclatures
-from PySide2.QtGui import QPixmap, QImage
+from PySide2.QtGui import QPixmap, QImage, QIcon
 from PyQt5 import QtCore
 from photo.globus import globus, million, two_hundred, hundred, half_hundred, schema
 
-class TheoryWindow(QMainWindow):
+
+class VideoPlayer(QMainWindow):
     def __init__(self, MainWindow):
+        super().__init__()
+        self.setWindowTitle("Номенклатура")
+        self.initialize_links(MainWindow)
+        self.mediaPlayer = QMediaPlayer(None, QMediaPlayer.VideoSurface)
+        self.resize(800,600)
+        videoWidget = QVideoWidget()
+        self.dur = 0
+
+        self.playButton = QPushButton()
+        self.playButton.setEnabled(False)
+        self.playButton.setIcon(self.style().standardIcon(QStyle.SP_MediaPlay))
+        self.playButton.clicked.connect(self.play)
+
+        self.positionSlider = QSlider(Qt.Horizontal)
+        self.positionSlider.setRange(0, 0)
+        self.positionSlider.sliderMoved.connect(self.setPosition)
+
+        self.error = QLabel()
+        self.error.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+
+        openButton = QPushButton("Выбрать видео")
+        openButton.setToolTip("Выбрать видеофайл(.avi)")
+        openButton.setStatusTip("Выбрать видеофайл(.avi)")
+        openButton.setFixedHeight(24)
+        openButton.clicked.connect(self.openFile)
+
+        backButton = QPushButton("Выйти из обучения")
+        backButton.setFixedHeight(24)
+        backButton.clicked.connect(self.toggle_main_window)
+
+        nextButton = QPushButton("Перейти к презентации")
+        nextButton.setFixedHeight(24)
+        nextButton.clicked.connect(self.toggle_theory_window)
+
+        # Create a widget for window contents
+        wid = QWidget(self)
+        self.setCentralWidget(wid)
+
+        # Create layouts to place inside widget
+        controlLayout = QHBoxLayout()
+        controlLayout.setContentsMargins(0, 0, 0, 0)
+        controlLayout.addWidget(self.playButton)
+        controlLayout.addWidget(self.positionSlider)
+
+        buttonLayout = QHBoxLayout()
+        buttonLayout.addWidget(backButton)
+        buttonLayout.addWidget(openButton)
+        buttonLayout.addWidget(nextButton)
+
+        layout = QVBoxLayout()
+        layout.addWidget(videoWidget)
+        layout.addLayout(controlLayout)
+        layout.addWidget(self.error)
+        layout.addLayout(buttonLayout)
+
+        # Set widget to contain window contents
+        wid.setLayout(layout)
+
+        self.mediaPlayer.setVideoOutput(videoWidget)
+        self.mediaPlayer.stateChanged.connect(self.mediaStateChanged)
+        self.mediaPlayer.positionChanged.connect(self.positionChanged)
+        self.mediaPlayer.durationChanged.connect(self.durationChanged)
+        self.mediaPlayer.error.connect(self.handleError)
+        self.fileName = './Номенклатура топографических карт.avi'
+        self.playVideo()
+
+    def initialize_links(self, MainWindow):
+        self.mw = MainWindow
+        self.tw = TheoryWindow(self)
+
+    def toggle_main_window(self):
+        self.mw.toggle_video_window()
+
+    def toggle_theory_window(self):
+        if self.tw.isVisible():
+            self.tw.hide()
+            self.show()
+            geometry = PySide2.QtCore.QRect()
+            geometry.setX(self.tw.pos().toTuple()[0])
+            geometry.setY(self.tw.pos().toTuple()[1]+30)
+            self.setGeometry(geometry)
+            self.resize(self.tw.width(), self.tw.height())
+        else:
+            self.tw.show()
+            self.hide()
+            geometry = PySide2.QtCore.QRect()
+            geometry.setX(self.pos().toTuple()[0])
+            geometry.setY(self.pos().toTuple()[1]+30)
+            self.tw.setGeometry(geometry)
+            self.tw.resize(self.width(), self.height())
+        print(self.tw.pos())
+        print(self.pos())
+
+    def openFile(self):
+        fileName, _ = QFileDialog.getOpenFileName(self, "Open Movie", QDir.homePath())
+        self.playVideo()
+
+    def playVideo(self):
+        if self.fileName != '':
+            self.mediaPlayer.setMedia(
+                    QMediaContent(QUrl.fromLocalFile(self.fileName)))
+            self.playButton.setEnabled(True)
+
+    def exitCall(self):
+        sys.exit(app.exec_())
+
+    def play(self):
+        if self.mediaPlayer.state() == QMediaPlayer.PlayingState:
+            self.mediaPlayer.pause()
+        else:
+            self.mediaPlayer.play()
+
+    def mediaStateChanged(self, state):
+        if self.mediaPlayer.state() == QMediaPlayer.PlayingState:
+            self.playButton.setIcon(
+                    self.style().standardIcon(QStyle.SP_MediaPause))
+        else:
+            self.playButton.setIcon(
+                    self.style().standardIcon(QStyle.SP_MediaPlay))
+
+    def positionChanged(self, position):
+        if position == self.dur:
+            self.setPosition(0)
+            self.play()
+        self.positionSlider.setValue(position)
+
+    def durationChanged(self, duration):
+        self.positionSlider.setRange(0, duration)
+        self.dur = duration
+
+    def setPosition(self, position):
+        self.mediaPlayer.setPosition(position)
+
+    def handleError(self):
+        self.playButton.setEnabled(False)
+        self.error.setText("Error: " + self.mediaPlayer.errorString())
+
+
+class TheoryWindow(QMainWindow):
+    def __init__(self, VideoWindow):
         super(TheoryWindow, self).__init__()
         self.ui = ui.ui_LearnConfiguration.Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle("Номенклатура")
-        self.initialize_links(MainWindow)
+        self.initialize_links(VideoWindow)
         self.set_signals()
         self.image_list = [self.load_images(globus), self.load_images(million), self.load_images(two_hundred), self.load_images(hundred), self.load_images(half_hundred), self.load_images(schema)]
         self.cur_image = 0
         self.show_current_image()
+        self.ui.label.installEventFilter(self)
+
+    def eventFilter(self, source, event):
+        if (source is self.ui.label and event.type() == QtCore.QEvent.Resize):
+            # re-scale the pixmap when the label resizes
+            self.ui.label.setMinimumSize(1, 1)
+            self.ui.label.setPixmap(self.pixmap.scaled(
+                self.ui.label.size(), PySide2.QtCore.Qt.KeepAspectRatio,
+                PySide2.QtCore.Qt.SmoothTransformation))
+        return super(TheoryWindow, self).eventFilter(source, event)
 
     def load_images(self, im):
         byte_data = base64.b64decode(im)
         image_data = BytesIO(byte_data)
         image = Image.open(image_data)
         qImage = ImageQt.ImageQt(image)
-
         return qImage
 
-    def initialize_links(self, MainWindow):
-        self.mw = MainWindow
+    def initialize_links(self, VideoWindow):
+        self.vw = VideoWindow
 
     def set_signals(self):
         self.ui.backButton.clicked.connect(self.prev)
         self.ui.nextButton.clicked.connect(self.next)
 
-    def toggle_main_window(self):
-        self.mw.toggle_theory_window()
+    def toggle_video_window(self):
+        self.vw.toggle_theory_window()
 
     def update_text_and_visibility(self):
         if self.cur_image == 0:
@@ -65,8 +218,11 @@ class TheoryWindow(QMainWindow):
             self.ui.nextButton.setText("Следующий слайд")
 
     def show_current_image(self):
-        pixmap = QPixmap(self.image_list[self.cur_image])
-        self.ui.label.setPixmap(pixmap)
+        self.pixmap = QPixmap(self.image_list[self.cur_image])
+        self.ui.label.setPixmap(self.pixmap.scaled(
+            self.ui.label.size(), PySide2.QtCore.Qt.KeepAspectRatio,
+            PySide2.QtCore.Qt.SmoothTransformation))
+        #self.ui.label.setAlignment(QtCore.Qt.AlignCenter)
         self.update_text_and_visibility()
 
     def next(self):
@@ -76,14 +232,14 @@ class TheoryWindow(QMainWindow):
         else:
             self.cur_image = 0
             self.show_current_image()
-            self.toggle_main_window()
+            self.toggle_video_window()
 
     def prev(self):
         if self.cur_image != 0:
             self.cur_image -= 1
             self.show_current_image()
         else:
-            self.toggle_main_window()
+            self.toggle_video_window()
 
 
 class TestDialog(QDialog):
@@ -422,13 +578,15 @@ class MainWindow(QMainWindow):
 
     def set_signals(self):
         self.ui.TestButton.clicked.connect(self.toggle_test_config_window)
-        self.ui.theoryButton.clicked.connect(self.toggle_theory_window)
+        #self.ui.theoryButton.clicked.connect(self.toggle_theory_window)
+        self.ui.theoryButton.clicked.connect(self.toggle_video_window)
         self.ui.practiceButton.clicked.connect(self.toggle_practice_window)
 
     def initialize_links(self):
         self.tcw = TestConfigurationWindow(self)
         self.tw = TheoryWindow(self)
         self.pw = PracticeWindow(self)
+        self.vw = VideoPlayer(self)
 
     def toggle_test_config_window(self):
         if self.tcw.isVisible():
@@ -452,6 +610,14 @@ class MainWindow(QMainWindow):
             self.show()
         else:
             self.pw.show()
+            self.hide()
+
+    def toggle_video_window(self):
+        if self.vw.isVisible():
+            self.vw.hide()
+            self.show()
+        else:
+            self.vw.show()
             self.hide()
 
 
